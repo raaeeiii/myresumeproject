@@ -313,49 +313,31 @@
 
         /* Profile Image Enhanced Animation */
         .profile-image {
-            width: 12rem;  /* Default size for mobile */
-            height: 12rem;
-            margin: 0 auto;
+            position: relative;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .profile-image::before {
+            content: '';
+            position: absolute;
+            inset: -5px;
             border-radius: 50%;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 5px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            animation: borderRotate 4s linear infinite;
         }
 
-        @media (min-width: 768px) {
-            .profile-image {
-                width: 12rem;  /* Size for tablets */
-                height: 12rem;
-            }
+        @keyframes borderRotate {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
         }
 
-        @media (min-width: 1024px) {
-            .profile-image {
-                width: 12rem;  /* Size for desktop */
-                height: 12rem;
-            }
-        }
-
-        .profile-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .profile-image:hover img {
-            transform: scale(1.05);
-        }
-
-        /* Profile image animation */
-        @keyframes pulseGlow {
-            0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.5); }
-            70% { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
-        }
-
-        .profile-image {
-            animation: pulseGlow 2s infinite;
+        .profile-image:hover {
+            transform: scale(1.05) rotate(5deg);
         }
 
         /* Contact Button Enhanced Animation */
