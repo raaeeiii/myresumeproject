@@ -773,11 +773,12 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 px-4 contact-section contact-pattern">
-        <div class="max-w-4xl mx-auto text-center">
+    <section id="contact" class="py-20 px-4 contact-section relative">
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-900/10 to-indigo-900/10 backdrop-blur-sm"></div>
+        <div class="max-w-4xl mx-auto text-center relative z-10">
             <h2 class="text-4xl font-bold mb-16 gradient-text" data-aos="fade-up">Get In Touch</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="contact-card p-8 rounded-2xl shadow-lg" data-aos="fade-right">
+                <div class="contact-card p-8 rounded-2xl shadow-lg bg-white/80 backdrop-blur-sm" data-aos="fade-right">
                     <h3 class="text-2xl font-bold mb-8 gradient-text">Contact Details</h3>
                     <div class="space-y-6">
                         <a href="mailto:valofocusteam@gmail.com" class="contact-link flex items-center gap-4 p-4 rounded-lg bg-white shadow-sm">
@@ -802,11 +803,11 @@
                         </a>
                     </div>
                 </div>
-                <div class="contact-card location-card p-8 rounded-2xl shadow-lg" data-aos="fade-left">
+                <div class="contact-card location-card p-8 rounded-2xl shadow-lg bg-white/80 backdrop-blur-sm" data-aos="fade-left">
                     <h3 class="text-2xl font-bold mb-8 gradient-text">Location</h3>
-                    <div class="relative h-64 rounded-lg overflow-hidden">
-                        <div class="location-bg"></div>
-                        <div class="location-content h-full flex flex-col items-center justify-center">
+                    <div class="relative h-64 rounded-lg overflow-hidden bg-gradient-to-br from-blue-600 to-indigo-600">
+                        <div class="absolute inset-0 bg-black/20"></div>
+                        <div class="relative h-full flex flex-col items-center justify-center">
                             <svg class="w-12 h-12 text-white mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -821,7 +822,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="py-8 px-4 text-center text-gray-600">
+    <footer class="py-8 px-4 text-center text-gray-600 bg-white/80 backdrop-blur-sm">
         <div class="max-w-6xl mx-auto">
             <p class="mb-4">&copy; 2025 Mohammed Rahib R.K. All rights reserved.</p>
             <p class="text-sm">Crafted with ❤️ using modern web technologies</p>
