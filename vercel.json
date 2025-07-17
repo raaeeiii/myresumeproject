@@ -8,6 +8,11 @@
   ],
   "routes": [
     {
+      "src": "/rahib.jpg",
+      "headers": { "cache-control": "public, max-age=31536000, immutable" },
+      "dest": "/public/rahib.jpg"
+    },
+    {
       "src": "/(.*)",
       "dest": "/$1"
     }
