@@ -613,14 +613,15 @@
     <header class="relative min-h-[80vh] flex items-center justify-center overflow-hidden py-16 px-4 header-pattern">
         <div class="absolute inset-0 bg-gradient-to-br from-blue-900/30 to-indigo-900/30 backdrop-blur-sm"></div>
         <div class="relative z-10 max-w-6xl mx-auto text-center" data-aos="fade-up">
-            <div class="profile-image mx-auto mb-8 w-48 h-48 rounded-full overflow-hidden shadow-xl bg-gradient-to-br from-blue-500 to-indigo-600">
+            <div class="profile-image mx-auto mb-8 w-48 h-48 rounded-full overflow-hidden shadow-xl">
                 <img 
-                    src="public/rahib.jpg" 
+                    src="./public/rahib.jpg" 
                     alt="Mohammed Rahib" 
                     class="w-full h-full object-cover"
                     loading="eager"
                     decoding="sync"
-                    onerror="this.onerror=null; this.style.backgroundColor='#4f46e5'; this.style.opacity='0.8'; console.error('Failed to load image:', this.src);"
+                    fetchpriority="high"
+                    onerror="console.error('Failed to load image:', this.src);"
                 >
             </div>
             <h1 class="text-5xl md:text-6xl font-bold mb-6 gradient-text">Mohammed Rahib R.K</h1>
