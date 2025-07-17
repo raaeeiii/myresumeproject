@@ -615,10 +615,11 @@
         <div class="relative z-10 max-w-6xl mx-auto text-center" data-aos="fade-up">
             <div class="profile-image mx-auto mb-8 w-48 h-48 rounded-full overflow-hidden shadow-xl">
                 <img 
-                    src="/rahib.jpg" 
+                    src="./rahib.jpg" 
                     alt="Mohammed Rahib" 
                     class="w-full h-full object-cover"
-                    onerror="console.error('Failed to load image:', this.src); this.style.backgroundColor='#4f46e5';"
+                    loading="eager"
+                    onerror="this.onerror=null; this.style.backgroundColor='#4f46e5'; console.error('Failed to load image:', this.src);"
                 >
             </div>
             <h1 class="text-5xl md:text-6xl font-bold mb-6 gradient-text">Mohammed Rahib R.K</h1>
