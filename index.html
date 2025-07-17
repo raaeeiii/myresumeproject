@@ -149,7 +149,7 @@
             background: 
                 radial-gradient(circle at 20% 150%, rgba(99, 102, 241, 0.15) 0%, rgba(99, 102, 241, 0) 50%),
                 radial-gradient(circle at 80% -50%, rgba(14, 165, 233, 0.15) 0%, rgba(14, 165, 233, 0) 50%),
-                url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+                url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
             opacity: 1;
             backdrop-filter: blur(50px);
         }
@@ -488,7 +488,58 @@
             to { opacity: 1; }
         }
 
-        /* Enhanced Background Animation */
+        /* Touch and Ripple Effect Styles */
+        .touch-ripple {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple-animation 0.6s linear;
+            background-color: rgba(255, 255, 255, 0.7);
+            pointer-events: none;
+        }
+
+        @keyframes ripple-animation {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        /* Mobile Touch Adaptations */
+        @media (hover: none) and (pointer: coarse) {
+            .skill-card {
+                transform: none !important;
+            }
+
+            .skill-card.touch-active {
+                transform: translateY(-10px) scale(1.02) !important;
+                box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            }
+
+            .skill-card.touch-active::before {
+                opacity: 1;
+            }
+
+            .skill-card.touch-active .skill-icon {
+                transform: scale(1.1) rotate(5deg);
+                filter: drop-shadow(0 0 12px rgba(37, 99, 235, 0.4));
+            }
+
+            .contact-button.touch-active {
+                transform: translateY(-3px);
+                box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.2);
+            }
+
+            .contact-link.touch-active {
+                transform: translateX(5px);
+                background: rgba(37, 99, 235, 0.05);
+            }
+        }
     </style>
     <script>
         // Initialize loading screen
@@ -498,13 +549,54 @@
             }, 2000); // Hide loading screen after 2 seconds
         });
 
-        // Initialize AOS animations
+        // Touch interaction handlers
         document.addEventListener('DOMContentLoaded', function() {
+            // Initialize AOS
             AOS.init({
                 duration: 1000,
                 once: true,
                 offset: 100
             });
+
+            // Add ripple effect to elements
+            const addRippleEffect = (elements) => {
+                elements.forEach(element => {
+                    element.classList.add('touch-ripple');
+                    
+                    element.addEventListener('touchstart', function(e) {
+                        const rect = element.getBoundingClientRect();
+                        const x = e.touches[0].clientX - rect.left;
+                        const y = e.touches[0].clientY - rect.top;
+
+                        const ripple = document.createElement('div');
+                        ripple.className = 'ripple';
+                        ripple.style.left = x + 'px';
+                        ripple.style.top = y + 'px';
+                        
+                        element.appendChild(ripple);
+                        
+                        element.classList.add('touch-active');
+                        
+                        ripple.addEventListener('animationend', () => {
+                            ripple.remove();
+                        });
+                    });
+
+                    element.addEventListener('touchend', function() {
+                        element.classList.remove('touch-active');
+                    });
+
+                    element.addEventListener('touchcancel', function() {
+                        element.classList.remove('touch-active');
+                    });
+                });
+            };
+
+            // Add touch interactions to interactive elements
+            addRippleEffect(document.querySelectorAll('.skill-card'));
+            addRippleEffect(document.querySelectorAll('.contact-button'));
+            addRippleEffect(document.querySelectorAll('.contact-link'));
+            addRippleEffect(document.querySelectorAll('.px-3.py-1')); // Tech tags
         });
     </script>
 </head>
